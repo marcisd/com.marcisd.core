@@ -1,6 +1,8 @@
 {
     "name": "com.marcisd.core.Editor",
-    "references": [],
+    "references": [
+        "GUID:ba077e9046d1840a59ff50229afd23f0"
+    ],
     "includePlatforms": [
         "Editor"
     ],
