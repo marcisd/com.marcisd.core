@@ -49,8 +49,19 @@ namespace MSD
 	public class FoldoutHeaderGroupScope : IDisposable
 	{
 		private readonly bool _isLayout;
+		private readonly Rect _innerRect;
 
 		public bool Foldout { get; private set; }
+
+		public Rect InnerRect {
+			get {
+				if (_isLayout) {
+					return _innerRect;
+				}
+				Debugger.LogWarning("Not used in layout mode.");
+				return default;
+			}
+		}
 
 		#region Layout
 
@@ -74,16 +85,28 @@ namespace MSD
 		#endregion Layout
 		#region Non-Layout
 
-		public FoldoutHeaderGroupScope(Rect position, bool foldout, string content, out Rect innerRect, bool alignHeader = false)
-			: this(position, foldout, new GUIContent(content), Color.white, out innerRect, alignHeader) { }
+		public FoldoutHeaderGroupScope(Rect position, bool foldout, string content)
+			: this(position, foldout, new GUIContent(content), Color.white, false) { }
 
-		public FoldoutHeaderGroupScope(Rect position, bool foldout, GUIContent content, out Rect innerRect, bool alignHeader = false)
-			: this(position, foldout, content, Color.white, out innerRect, alignHeader) { }
+		public FoldoutHeaderGroupScope(Rect position, bool foldout, string content, bool alignHeader)
+			: this(position, foldout, new GUIContent(content), Color.white, alignHeader) { }
 
-		public FoldoutHeaderGroupScope(Rect position, bool foldout, string content, Color backgroundColor, out Rect innerRect, bool alignHeader = false)
-			: this(position, foldout, new GUIContent(content), backgroundColor, out innerRect, alignHeader) { }
+		public FoldoutHeaderGroupScope(Rect position, bool foldout, GUIContent content)
+			: this(position, foldout, content, Color.white, false) { }
 
-		public FoldoutHeaderGroupScope(Rect position, bool foldout, GUIContent content, Color backgroundColor, out Rect innerRect, bool alignHeader = false)
+		public FoldoutHeaderGroupScope(Rect position, bool foldout, GUIContent content, bool alignHeader)
+			: this(position, foldout, content, Color.white, alignHeader) { }
+
+		public FoldoutHeaderGroupScope(Rect position, bool foldout, string content, Color backgroundColor)
+			: this(position, foldout, new GUIContent(content), backgroundColor, false) { }
+
+		public FoldoutHeaderGroupScope(Rect position, bool foldout, string content, Color backgroundColor, bool alignHeader)
+			: this(position, foldout, new GUIContent(content), backgroundColor, alignHeader) { }
+
+		public FoldoutHeaderGroupScope(Rect position, bool foldout, GUIContent content, Color backgroundColor)
+			: this(position, foldout, content, backgroundColor, false) { }
+
+		public FoldoutHeaderGroupScope(Rect position, bool foldout, GUIContent content, Color backgroundColor, bool alignHeader)
 		{
 			Rect headerRect = CalculateHeaderRect(position, alignHeader);
 
@@ -92,7 +115,7 @@ namespace MSD
 			}
 			_isLayout = false;
 
-			innerRect = new Rect(position) {
+			_innerRect = new Rect(position) {
 				height = position.height - EditorGUIUtility.singleLineHeight,
 				y = position.y + EditorGUIUtility.singleLineHeight,
 			};
