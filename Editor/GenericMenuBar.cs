@@ -57,18 +57,11 @@ namespace MSD.Editor
 
 		public void AddLabel(GUIContent content, LabelType type, Func<bool> isDisabledCallback)
 		{
-			LabelElement label;
+			LabelElement label = type switch {
+				LabelType.Bold => new BoldLabelElement(content),
+				_ => new LabelElement(content),
+			};
 
-			switch (type) {
-				case LabelType.Bold:
-					label = new BoldLabelElement();
-					break;
-				default:
-					label = new LabelElement();
-					break;
-			}
-
-			label.content = content;
 			if (isDisabledCallback != null) {
 				label.isDisabledCallback = isDisabledCallback;
 			}
@@ -102,21 +95,12 @@ namespace MSD.Editor
 
 		public void AddButton(GUIContent content, Action onClick, ButtonType type, Func<bool> isDisabledCallback)
 		{
-			ButtonElement button;
+			ButtonElement button = type switch {
+				ButtonType.Dropdown => new DropdownElement(content),
+				ButtonType.Popup => new PopupElement(content),
+				_ => new ButtonElement(content),
+			};
 
-			switch (type) {
-				case ButtonType.Dropdown:
-					button = new DropdownElement();
-					break;
-				case ButtonType.Popup:
-					button = new PopupElement();
-					break;
-				default:
-					button = new ButtonElement();
-					break;
-			}
-
-			button.content = content;
 			button.OnClick = onClick;
 			if (isDisabledCallback != null) {
 				button.isDisabledCallback = isDisabledCallback;
@@ -151,19 +135,11 @@ namespace MSD.Editor
 
 		public void AddInputField(GUIContent content, string text, Action<string> onValueChange, InputFieldType type, Func<bool> isDisabledCallback)
 		{
-			TextFieldElement textField;
+			TextFieldElement textField = type switch {
+				InputFieldType.SearchField => new SearchFieldElement(content, text),
+				_ => new TextFieldElement(content, text),
+			};
 
-			switch (type) {
-				case InputFieldType.SearchField:
-					textField = new SearchFieldElement();
-					break;
-				default:
-					textField = new TextFieldElement();
-					break;
-			}
-
-			textField.value = text;
-			textField.content = content;
 			textField.OnValueChanged = onValueChange;
 			if (isDisabledCallback != null) {
 				textField.isDisabledCallback = isDisabledCallback;
@@ -198,10 +174,7 @@ namespace MSD.Editor
 
 		public void AddToggle(GUIContent content, bool isOn, Action<bool> onValueChange, GUIContent offContent, Func<bool> isDisabledCallback)
 		{
-			ToggleElement toggle = new ToggleElement {
-				content = content,
-				value = isOn,
-				offContent = offContent,
+			ToggleElement toggle = new ToggleElement (content, isOn, offContent) {
 				OnValueChanged = onValueChange,
 			};
 
