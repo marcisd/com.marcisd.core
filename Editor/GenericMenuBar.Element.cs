@@ -66,30 +66,30 @@ namespace MSD.Editor
 		{
 			public GUIContent content;
 
-			protected virtual GUIStyle style => EditorStyles.miniLabel;
-
 			protected GUILayoutOption[] options = { GUILayout.ExpandWidth(false) };
+
+			protected virtual GUIStyle Style => EditorStyles.miniLabel;
 
 			protected override void DoDraw()
 			{
-				EditorGUILayout.LabelField(content, style, options);
+				EditorGUILayout.LabelField(content, Style, options);
 			}
 		}
 
 		private sealed class BoldLabelElement : LabelElement
 		{
-			protected override GUIStyle style => EditorStyles.miniBoldLabel;
+			protected override GUIStyle Style => EditorStyles.miniBoldLabel;
 		}
 
 		private class ButtonElement : LabelElement
 		{
 			public Action OnClick;
 
-			protected override GUIStyle style => EditorStyles.toolbarButton;
+			protected override GUIStyle Style => EditorStyles.toolbarButton;
 
 			protected override void DoDraw()
 			{
-				if (GUILayout.Button(content, style, options)) {
+				if (GUILayout.Button(content, Style, options)) {
 					OnClick?.Invoke();
 				}
 			}
@@ -97,12 +97,12 @@ namespace MSD.Editor
 
 		private sealed class DropdownElement : ButtonElement
 		{
-			protected override GUIStyle style => EditorStyles.toolbarDropDown;
+			protected override GUIStyle Style => EditorStyles.toolbarDropDown;
 		}
 
 		private sealed class PopupElement : ButtonElement
 		{
-			protected override GUIStyle style => EditorStyles.toolbarPopup;
+			protected override GUIStyle Style => EditorStyles.toolbarPopup;
 		}
 
 		private class TextFieldElement : LabelElement
@@ -111,11 +111,11 @@ namespace MSD.Editor
 
 			public Action<string> OnValueChanged;
 
-			protected override GUIStyle style => EditorStyles.toolbarTextField;
+			protected override GUIStyle Style => EditorStyles.toolbarTextField;
 
 			protected override void DoDraw()
 			{
-				string text = EditorGUILayout.TextField(content, value, style, options);
+				string text = EditorGUILayout.TextField(content, value, Style, options);
 				if (text != value) {
 					value = text;
 					OnValueChanged?.Invoke(text);
@@ -125,7 +125,7 @@ namespace MSD.Editor
 
 		private sealed class SearchFieldElement : TextFieldElement
 		{
-			protected override GUIStyle style => EditorStyles.toolbarSearchField;
+			protected override GUIStyle Style => EditorStyles.toolbarSearchField;
 		}
 
 		private class ToggleElement : LabelElement
@@ -135,13 +135,13 @@ namespace MSD.Editor
 
 			public Action<bool> OnValueChanged;
 
-			protected override GUIStyle style => EditorStyles.toolbarButton;
+			protected override GUIStyle Style => EditorStyles.toolbarButton;
 
-			private GUIContent toggleContent => value ? content : offContent ?? content;
+			private GUIContent ToggleContent => value ? content : offContent ?? content;
 
 			protected override void DoDraw()
 			{
-				bool isOn = GUILayout.Toggle(value, toggleContent, style, options);
+				bool isOn = GUILayout.Toggle(value, ToggleContent, Style, options);
 				if (isOn != value) {
 					value = isOn;
 					OnValueChanged?.Invoke(isOn);

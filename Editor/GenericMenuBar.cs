@@ -13,7 +13,7 @@ namespace MSD.Editor
 {
 	public partial class GenericMenuBar 
 	{
-		private List<Element> _elements;
+		private readonly List<Element> _elements;
 
 		public GenericMenuBar()
 		{
@@ -30,7 +30,32 @@ namespace MSD.Editor
 			_elements.Add(new FlexibleSpaceElement());
 		}
 
-		public void AddLabel(GUIContent content, LabelType type = LabelType.Regular, Func<bool> isDisabledCallback = null)
+		public void AddLabel(string label)
+		{
+			AddLabel(new GUIContent(label), LabelType.Regular, null);
+		}
+
+		public void AddLabel(GUIContent content)
+		{
+			AddLabel(content, LabelType.Regular, null);
+		}
+
+		public void AddLabel(string label, LabelType type)
+		{
+			AddLabel(new GUIContent(label), type, null);
+		}
+
+		public void AddLabel(GUIContent content, LabelType type)
+		{
+			AddLabel(content, type, null);
+		}
+
+		public void AddLabel(string label, LabelType type, Func<bool> isDisabledCallback)
+		{
+			AddLabel(new GUIContent(label), type, isDisabledCallback);
+		}
+
+		public void AddLabel(GUIContent content, LabelType type, Func<bool> isDisabledCallback)
 		{
 			LabelElement label;
 
@@ -48,6 +73,31 @@ namespace MSD.Editor
 				label.isDisabledCallback = isDisabledCallback;
 			}
 			_elements.Add(label);
+		}
+
+		public void AddButton(string label, Action onClick)
+		{
+			AddButton(label, onClick, ButtonType.Button, null);
+		}
+
+		public void AddButton(GUIContent content, Action onClick)
+		{
+			AddButton(content, onClick, ButtonType.Button, null);
+		}
+
+		public void AddButton(string label, Action onClick, ButtonType type)
+		{
+			AddButton(label, onClick, type, null);
+		}
+
+		public void AddButton(GUIContent content, Action onClick, ButtonType type)
+		{
+			AddButton(content, onClick, type, null);
+		}
+
+		public void AddButton(string label, Action onClick, ButtonType type, Func<bool> isDisabledCallback)
+		{
+			AddButton(new GUIContent(label), onClick, type, isDisabledCallback);
 		}
 
 		public void AddButton(GUIContent content, Action onClick, ButtonType type = ButtonType.Button, Func<bool> isDisabledCallback = null)
@@ -74,7 +124,32 @@ namespace MSD.Editor
 			_elements.Add(button);
 		}
 
-		public void AddInputField(GUIContent content, string text, Action<string> onValueChange, InputFieldType type = InputFieldType.TextField, Func<bool> isDisabledCallback = null)
+		public void AddInputField(string label, string text, Action<string> onValueChange)
+		{
+			AddInputField(new GUIContent(label), text, onValueChange, InputFieldType.TextField, null);
+		}
+
+		public void AddInputField(GUIContent content, string text, Action<string> onValueChange)
+		{
+			AddInputField(content, text, onValueChange, InputFieldType.TextField, null);
+		}
+
+		public void AddInputField(string label, string text, Action<string> onValueChange, InputFieldType type)
+		{
+			AddInputField(new GUIContent(label), text, onValueChange, type, null);
+		}
+
+		public void AddInputField(GUIContent content, string text, Action<string> onValueChange, InputFieldType type)
+		{
+			AddInputField(content, text, onValueChange, type, null);
+		}
+
+		public void AddInputField(string label, string text, Action<string> onValueChange, InputFieldType type, Func<bool> isDisabledCallback)
+		{
+			AddInputField(new GUIContent(label), text, onValueChange, type, isDisabledCallback);
+		}
+
+		public void AddInputField(GUIContent content, string text, Action<string> onValueChange, InputFieldType type, Func<bool> isDisabledCallback)
 		{
 			TextFieldElement textField;
 
@@ -96,13 +171,38 @@ namespace MSD.Editor
 			_elements.Add(textField);
 		}
 
-		public void AddToggle(GUIContent content, bool isOn, Action<bool> onValueChange, GUIContent offContent = null, Func<bool> isDisabledCallback = null)
+		public void AddToggle(string label, bool isOn, Action<bool> onValueChange)
+		{
+			AddToggle(label, isOn, onValueChange, null, null);
+		}
+
+		public void AddToggle(GUIContent content, bool isOn, Action<bool> onValueChange)
+		{
+			AddToggle(content, isOn, onValueChange, null, null);
+		}
+
+		public void AddToggle(string label, bool isOn, Action<bool> onValueChange, GUIContent offContent)
+		{
+			AddToggle(label, isOn, onValueChange, offContent, null);
+		}
+
+		public void AddToggle(GUIContent content, bool isOn, Action<bool> onValueChange, GUIContent offContent)
+		{
+			AddToggle(content, isOn, onValueChange, offContent, null);
+		}
+
+		public void AddToggle(string label, bool isOn, Action<bool> onValueChange, GUIContent offContent, Func<bool> isDisabledCallback)
+		{
+			AddToggle(new GUIContent(label), isOn, onValueChange, offContent, isDisabledCallback);
+		}
+
+		public void AddToggle(GUIContent content, bool isOn, Action<bool> onValueChange, GUIContent offContent, Func<bool> isDisabledCallback)
 		{
 			ToggleElement toggle = new ToggleElement() {
 				content = content,
 				value = isOn,
-				OnValueChanged = onValueChange,
 				offContent = offContent,
+				OnValueChanged = onValueChange,
 			};
 
 			if (isDisabledCallback != null) {
