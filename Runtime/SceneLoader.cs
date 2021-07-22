@@ -15,7 +15,7 @@ namespace MSD
 	public class SceneLoader : ScriptableObject
 	{
 		[SerializeField]
-		private SceneReference scene = null;
+		private SceneReference scene;
 
 		public void LoadScene()
 		{

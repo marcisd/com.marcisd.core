@@ -64,7 +64,7 @@ namespace MSD.Editor
 
 		private class LabelElement : Element
 		{
-			public GUIContent content;
+			public GUIContent content = GUIContent.none;
 
 			protected GUILayoutOption[] options = { GUILayout.ExpandWidth(false) };
 
@@ -83,7 +83,7 @@ namespace MSD.Editor
 
 		private class ButtonElement : LabelElement
 		{
-			public Action OnClick;
+			public Action OnClick = delegate { };
 
 			protected override GUIStyle Style => EditorStyles.toolbarButton;
 
@@ -109,7 +109,7 @@ namespace MSD.Editor
 		{
 			public string value;
 
-			public Action<string> OnValueChanged;
+			public Action<string> OnValueChanged = delegate { };
 
 			protected override GUIStyle Style => EditorStyles.toolbarTextField;
 
@@ -131,7 +131,7 @@ namespace MSD.Editor
 		private class ToggleElement : LabelElement
 		{
 			public bool value;
-			public GUIContent offContent = null;
+			public GUIContent offContent;
 
 			public Action<bool> OnValueChanged;
 
