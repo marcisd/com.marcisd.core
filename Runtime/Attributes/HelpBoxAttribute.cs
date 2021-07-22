@@ -31,7 +31,7 @@ namespace MSD
 		public HelpBoxAttribute(string text)
 			: this(text, MessageType.Info) { }
 		
-		public HelpBoxAttribute(string text, MessageType type = MessageType.Info)
+		public HelpBoxAttribute(string text, MessageType type)
 		{
 			this.text = text;
 			this.type = type;
