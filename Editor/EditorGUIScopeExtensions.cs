@@ -250,7 +250,7 @@ namespace MSD
 
 	internal static class Styles
 	{
-		private static GUIStyle s_boxOdd = null;
+		private static GUIStyle s_boxOdd;
 
 		public static GUIStyle BoxOdd {
 			get {
@@ -263,7 +263,7 @@ namespace MSD
 			}
 		}
 
-		private static GUIStyle s_boxEven = null;
+		private static GUIStyle s_boxEven;
 
 		public static GUIStyle BoxEven {
 			get {
@@ -276,7 +276,7 @@ namespace MSD
 			}
 		}
 
-		private static GUIStyle s_rowOdd = null;
+		private static GUIStyle s_rowOdd;
 
 		public static GUIStyle RowOdd {
 			get {
@@ -289,7 +289,7 @@ namespace MSD
 			}
 		}
 
-		private static GUIStyle s_rowEven = null;
+		private static GUIStyle s_rowEven;
 
 		public static GUIStyle RowEven {
 			get {

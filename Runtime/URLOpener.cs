@@ -23,6 +23,7 @@ namespace MSD
 		public bool IsValidURL => Uri != null;
 		public bool IsSecure => IsValidURL && Uri?.Scheme == Uri.UriSchemeHttps;
 
+		private Uri _uri;
 		public Uri Uri {
 			get {
 				if (_uri?.AbsoluteUri == _urlString) { return _uri; }
@@ -32,8 +33,7 @@ namespace MSD
 				return _uri;
 			}
 		}
-		private Uri _uri = null;
-
+		
 		public void Open()
 		{
 			if (IsValidURL) { Application.OpenURL(Uri.AbsoluteUri); }

@@ -100,7 +100,7 @@ namespace MSD.Editor
 			AddButton(new GUIContent(label), onClick, type, isDisabledCallback);
 		}
 
-		public void AddButton(GUIContent content, Action onClick, ButtonType type = ButtonType.Button, Func<bool> isDisabledCallback = null)
+		public void AddButton(GUIContent content, Action onClick, ButtonType type, Func<bool> isDisabledCallback)
 		{
 			ButtonElement button;
 
@@ -198,7 +198,7 @@ namespace MSD.Editor
 
 		public void AddToggle(GUIContent content, bool isOn, Action<bool> onValueChange, GUIContent offContent, Func<bool> isDisabledCallback)
 		{
-			ToggleElement toggle = new ToggleElement() {
+			ToggleElement toggle = new ToggleElement {
 				content = content,
 				value = isOn,
 				offContent = offContent,
