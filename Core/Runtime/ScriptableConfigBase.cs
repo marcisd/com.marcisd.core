@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Diagnostics;
 
 #if UNITY_EDITOR
 using System.IO;
@@ -17,12 +18,10 @@ namespace MSD
 	public abstract class ScriptableConfigBase<T> : ScriptableObject
 		where T : ScriptableConfigBase<T>
 	{
-		private static T s_instance = null;
+		private static T s_instance;
 		public static T Instance {
 			get {
 				if (s_instance == null) {
-					// Creates an instance and saves it as an asset
-					// if in the Editor
 					string configResourcesPath = typeof(T).ToString();
 					s_instance = Resources.Load<T>(configResourcesPath);
 
@@ -39,11 +38,10 @@ namespace MSD
 			}
 		}
 
+		[Conditional("UNITY_EDITOR")]
 		protected static void DirtyEditor()
 		{
-#if UNITY_EDITOR
 			EditorUtility.SetDirty(Instance);
-#endif
 		}
 
 #if UNITY_EDITOR
