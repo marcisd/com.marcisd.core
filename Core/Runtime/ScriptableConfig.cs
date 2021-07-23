@@ -15,8 +15,8 @@ Date:		05/04/2019 19:59
 
 namespace MSD
 {
-	public abstract class ScriptableConfigBase<T> : ScriptableObject
-		where T : ScriptableConfigBase<T>
+	public abstract class ScriptableConfig<T> : ScriptableObject
+		where T : ScriptableConfig<T>
 	{
 		private static T s_instance;
 		public static T Instance {
