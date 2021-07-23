@@ -1,0 +1,15 @@
+{
+    "name": "com.marcisd.core.variables",
+    "references": [
+        "GUID:ba077e9046d1840a59ff50229afd23f0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
