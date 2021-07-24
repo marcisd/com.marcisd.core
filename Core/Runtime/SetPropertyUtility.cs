@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DMED
+namespace MSD
 {
     public static class SetPropertyUtility
     {
