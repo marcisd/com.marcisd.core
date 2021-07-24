@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 /*===============================================================
-Project:	MSD - Core
+Project:	Core Library
 Developer:	Marci San Diego
 Company:	Personal - marcisandiego@gmail.com
 Date:		29/11/2019 21:13

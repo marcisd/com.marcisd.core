@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 
 /*===============================================================
-Project:	MSD - Core
+Project:	Core Library
 Developer:	Marci San Diego
 Company:	Personal - marcisandiego@gmail.com
 Date:		14/08/2019 15:00

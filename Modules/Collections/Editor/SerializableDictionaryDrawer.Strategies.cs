@@ -4,7 +4,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 /*===============================================================
-Project:	MSD - Core
+Project:	Core Library
 Developer:	Marci San Diego
 Company:	Personal - marcisandiego@gmail.com
 Date:		30/04/2019 23:18

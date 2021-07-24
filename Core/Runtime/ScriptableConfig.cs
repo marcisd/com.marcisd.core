@@ -7,7 +7,7 @@ using UnityEditor;
 #endif
 
 /*===============================================================
-Project:	MSD - Core
+Project:	Core Library
 Developer:	Marci San Diego
 Company:	Personal - marcisandiego@gmail.com
 Date:		05/04/2019 19:59

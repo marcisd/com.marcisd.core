@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /*===============================================================
-Project:	MSD - Core
+Project:	Core Library
 Developer:	Marci San Diego
 Company:	Personal - marcisandiego@gmail.com
 Date:		08/04/2020 23:41

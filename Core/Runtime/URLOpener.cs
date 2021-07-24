@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 /*===============================================================
-Project:	MSD - Core
+Project:	Core Library
 Developer:	Marci San Diego
 Company:	Personal - marcisandiego@gmail.com
 Date:		25/07/2019 14:41

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 /*===============================================================
-Project:	MSD - Core
+Project:	Core Library
 Developer:	Marci San Diego
 Company:	Personal - marcisandiego@gmail.com
 Date:       15/11/2018 12:49

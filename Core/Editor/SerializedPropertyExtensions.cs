@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 
 /*===============================================================
-Project:	MSD - Core
+Project:	Core Library
 Developer:	Marci San Diego
 Company:	Personal - marcisandiego@gmail.com
 Date:		22/09/2019 10:22
