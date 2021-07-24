@@ -25,7 +25,7 @@ namespace MSD.Editor
 			_reorderableList = new ReorderableList(_serializedObject, _keysProperty) {
 				drawHeaderCallback = DrawHeaderCallback,
 				drawNoneElementCallback = DrawNoneElementCallback,
-				// TODO: fix this when C#9.0 is out
+				// TODO: Convert x to discard when C#9.0 is out
 				drawElementCallback = (rect, index, x, _) => DrawElementCallback(rect, index),
 				elementHeightCallback = ElementHeightCallback,
 				onAddCallback = (_) => OnAddCallback(),
