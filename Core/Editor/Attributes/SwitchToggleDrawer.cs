@@ -19,9 +19,9 @@ namespace MSD.Editor
 		{
 			if (property.propertyType == SerializedPropertyType.Boolean) {
 				bool boolValue = property.boolValue;
-				GUIContent optionTrue = new GUIContent(Attribute.optionTrueLabel);
-				GUIContent optionFalse = new GUIContent(Attribute.optionFalseLabel);
-				GUIContent labelOverride = string.IsNullOrWhiteSpace(Attribute.labelOverride) ? label : new GUIContent(Attribute.labelOverride);
+				GUIContent optionTrue = new GUIContent(Attribute.OptionTrueLabel);
+				GUIContent optionFalse = new GUIContent(Attribute.OptionFalseLabel);
+				GUIContent labelOverride = string.IsNullOrWhiteSpace(Attribute.LabelOverride) ? label : new GUIContent(Attribute.LabelOverride);
 
 				using (new EditorGUI.PropertyScope(position, labelOverride, property)) {
 

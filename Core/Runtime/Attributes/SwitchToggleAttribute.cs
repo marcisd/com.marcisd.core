@@ -13,18 +13,18 @@ namespace MSD
 	[AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
 	public class SwitchToggleAttribute : PropertyAttribute
 	{
-		public readonly string optionTrueLabel;
-		public readonly string optionFalseLabel;
-		public readonly string labelOverride;
+		public string OptionTrueLabel { get; private set; }
+		public string OptionFalseLabel { get; private set; }
+		public string LabelOverride { get; private set; }
 
 		public SwitchToggleAttribute(string optionTrueLabel, string optionFalseLabel)
 			: this (optionTrueLabel, optionFalseLabel, string.Empty) { }
 
 		public SwitchToggleAttribute(string optionTrueLabel, string optionFalseLabel, string labelOverride)
 		{
-			this.optionTrueLabel = optionTrueLabel;
-			this.optionFalseLabel = optionFalseLabel;
-			this.labelOverride = labelOverride;
+			OptionTrueLabel = optionTrueLabel;
+			OptionFalseLabel = optionFalseLabel;
+			LabelOverride = labelOverride;
 		}
 	}
 }

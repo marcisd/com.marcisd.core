@@ -25,17 +25,16 @@ namespace MSD
 	[AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
 	public class HelpBoxAttribute : PropertyAttribute
 	{
-		internal readonly string text;
-		internal readonly MessageType type;
+		public string Text { get; private set; }
+		public MessageType Type { get; private set; }
 
 		public HelpBoxAttribute(string text)
 			: this(text, MessageType.Info) { }
 		
 		public HelpBoxAttribute(string text, MessageType type)
 		{
-			this.text = text;
-			this.type = type;
+			Text = text;
+			Type = type;
 		}
 	}
-
 }
