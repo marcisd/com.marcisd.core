@@ -21,13 +21,19 @@ namespace MSD.Editor
 		{
 			private static readonly string OBJECT_PROP_NAME = "_object";
 
-			public SerializedProperty objectProp = null;
-			public Type objectType = null;
+			private readonly SerializedProperty _objectProp;
+			private readonly Type _objectType;
+
+			public UObject ObjectReference {
+				get => _objectProp.objectReferenceValue;
+				set => _objectProp.objectReferenceValue = value;
+			}
+			public Type ObjectType => _objectType;
 
 			public SerializableInterfaceProperties(PropertyDrawer propertyDrawer, SerializedProperty property)
 			{
-				objectProp = property.FindPropertyRelative(OBJECT_PROP_NAME);
-				objectType = GetPropertyType(propertyDrawer).BaseType.GetGenericArguments()[0];
+				_objectProp = property.FindPropertyRelative(OBJECT_PROP_NAME);
+				_objectType = GetPropertyType(propertyDrawer).BaseType.GetGenericArguments()[0];
 			}
 
 			private Type GetPropertyType(PropertyDrawer propertyDrawer)
@@ -50,8 +56,8 @@ namespace MSD.Editor
 
 			using (new EditorGUI.PropertyScope(position, label, property)) {
 				UObject obj = EditorGUI.ObjectField(position,
-					label.text != string.Empty ? $"{property.displayName}.{properties.objectType.Name}" : label.text,
-					properties.objectProp.objectReferenceValue,
+					label.text != string.Empty ? $"{property.displayName}.{properties.ObjectType.Name}" : label.text,
+					properties.ObjectReference,
 					typeof(UObject),
 					true);
 
@@ -60,7 +66,7 @@ namespace MSD.Editor
 					// Try ScriptableObject types
 					if (desiredObj == null) {
 						Type objType = obj.GetType();
-						bool isCanCastObj = properties.objectType.IsAssignableFrom(objType);
+						bool isCanCastObj = properties.ObjectType.IsAssignableFrom(objType);
 						if (isCanCastObj) { desiredObj = obj; }
 					}
 
@@ -72,17 +78,17 @@ namespace MSD.Editor
 							if (comp != null) { go = comp.gameObject; }
 						}
 
-						if (go != null) { desiredObj = go.GetComponent(properties.objectType); }
+						if (go != null) { desiredObj = go.GetComponent(properties.ObjectType); }
 					}
 
 					if (desiredObj == null) {
-						EditorUtility.DisplayDialog("SerializableInterface Error", $"Not a valid {properties.objectType.Name}", "OK");
+						EditorUtility.DisplayDialog("SerializableInterface Error", $"Not a valid {properties.ObjectType.Name}", "OK");
 					}
 				}
 
 				// Assign to the field
 				if (desiredObj != null) {
-					properties.objectProp.objectReferenceValue = desiredObj;
+					properties.ObjectReference = desiredObj;
 				}
 			}
 		}

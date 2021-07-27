@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*===============================================================
 Project:	Core Library
@@ -10,13 +9,10 @@ Date:       20/09/2019 19:08
 
 namespace MSD
 {
-	using UObject = UnityEngine.Object;
-
 	/// <summary>
 	/// Allows serialization of interfaces that are implemented by UnityEngine.Object classes.
 	/// </summary>
-	[Serializable]
-	public class SerializableInterface<T> : SerializableInterface where T : class
+	public abstract class SerializableInterface<T> : SerializableInterface where T : class
 	{
 		private static readonly string DEBUG_PREPEND = $"[{nameof(SerializableInterface)}]";
 
@@ -28,7 +24,7 @@ namespace MSD
 		public T Value {
 			get => _object as T;
 			set {
-				if (value is UObject objectValue) {
+				if (value is Object objectValue) {
 					_object = objectValue;
 				} else {
 					Debugger.LogError(DEBUG_PREPEND, "Cannot assign an object that's not of type UnityEngine.Object!");
@@ -45,9 +41,9 @@ namespace MSD
 	public abstract class SerializableInterface
 	{
 		[SerializeField]
-		protected UObject _object = null;
+		protected Object _object = null;
 
-		public static implicit operator UObject(SerializableInterface serializableInterface)
+		public static implicit operator Object(SerializableInterface serializableInterface)
 		{
 			return serializableInterface._object;
 		}
