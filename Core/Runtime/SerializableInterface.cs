@@ -14,9 +14,7 @@ namespace MSD
 	/// </summary>
 	public abstract class SerializableInterface<T> : SerializableInterface where T : class
 	{
-		private static readonly string DEBUG_PREPEND = $"[{nameof(SerializableInterface)}]";
-
-		public SerializableInterface(T value)
+		protected SerializableInterface(T value)
 		{
 			Value = value;
 		}
@@ -40,8 +38,10 @@ namespace MSD
 
 	public abstract class SerializableInterface
 	{
+		protected static readonly string DEBUG_PREPEND = $"[{nameof(SerializableInterface)}]";
+
 		[SerializeField]
-		protected Object _object = null;
+		protected Object _object;
 
 		public static implicit operator Object(SerializableInterface serializableInterface)
 		{
