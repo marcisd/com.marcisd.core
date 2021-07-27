@@ -13,23 +13,23 @@ namespace MSD.Editor
 	[CustomEditor(typeof(URLOpener))]
 	public class URLOpenerInspector : UnityEditor.Editor
 	{
-		URLOpener URLOpener => target as URLOpener;
+		URLOpener Target => target as URLOpener;
 
 		public override void OnInspectorGUI()
 		{
 			base.OnInspectorGUI();
 
-			if (!URLOpener.IsValidURL) {
+			if (!Target.IsValidURL) {
 				EditorGUILayout.HelpBox(URLOpener.LOG_ERROR_INVALIDURL, MessageType.Error);
 			} else {
-				if (!URLOpener.IsSecure) {
+				if (!Target.IsSecure) {
 					EditorGUILayout.HelpBox(URLOpener.LOG_WARNING_NOTSECUREURL, MessageType.Warning);
 				}
 			}
 
-			using (new EditorGUI.DisabledScope(!URLOpener.IsValidURL)) {
+			using (new EditorGUI.DisabledScope(!Target.IsValidURL)) {
 				if (GUILayout.Button("Open")) {
-					URLOpener.Open();
+					Target.Open();
 				}
 			}
 

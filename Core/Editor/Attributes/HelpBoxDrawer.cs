@@ -18,18 +18,18 @@ namespace MSD.Editor
 		private static readonly float BOTTOM_SPACING = EditorGUIUtility.standardVerticalSpacing;
 		private static readonly float TOTAL_SPACING = TOP_SPACING + BOTTOM_SPACING;
 
-		HelpBoxAttribute HelpBoxAttribute => attribute as HelpBoxAttribute;
+		HelpBoxAttribute Attribute => attribute as HelpBoxAttribute;
 
 		public override void OnGUI(Rect position) 
 		{
 			position.y += TOP_SPACING;
 			position.height -= TOTAL_SPACING;
-			EditorGUI.HelpBox(position, HelpBoxAttribute.text, HelpBoxAttribute.type);
+			EditorGUI.HelpBox(position, Attribute.text, Attribute.type);
 		}
 
 		public override float GetHeight()
 		{
-			var content = new GUIContent(HelpBoxAttribute.text);
+			var content = new GUIContent(Attribute.text);
 			var height = EditorStyles.helpBox.CalcHeight(content, EditorGUIUtility.currentViewWidth);
 
 			height = Mathf.Max(MINIMUM_BOX_HEIGHT, height);

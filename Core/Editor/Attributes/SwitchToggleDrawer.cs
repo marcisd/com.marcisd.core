@@ -13,18 +13,19 @@ namespace MSD.Editor
 	[CustomPropertyDrawer(typeof(SwitchToggleAttribute))]
 	public class SwitchToggleDrawer : PropertyDrawer
 	{
-		private SwitchToggleAttribute SwitchToggle => attribute as SwitchToggleAttribute;
+		private SwitchToggleAttribute Attribute => attribute as SwitchToggleAttribute;
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
 			if (property.propertyType == SerializedPropertyType.Boolean) {
 				bool boolValue = property.boolValue;
-				GUIContent optionTrue = new GUIContent(SwitchToggle.optionTrueLabel);
-				GUIContent optionFalse = new GUIContent(SwitchToggle.optionFalseLabel);
+				GUIContent optionTrue = new GUIContent(Attribute.optionTrueLabel);
+				GUIContent optionFalse = new GUIContent(Attribute.optionFalseLabel);
+				GUIContent labelOverride = string.IsNullOrWhiteSpace(Attribute.labelOverride) ? label : new GUIContent(Attribute.labelOverride);
 
-				using (new EditorGUI.PropertyScope(position, label, property)) {
+				using (new EditorGUI.PropertyScope(position, labelOverride, property)) {
 
-					position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Keyboard), label);
+					position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Keyboard), labelOverride);
 
 					float width1 = GUI.skin.button.CalcSize(optionTrue).x;
 					float width2 = GUI.skin.button.CalcSize(optionFalse).x;
