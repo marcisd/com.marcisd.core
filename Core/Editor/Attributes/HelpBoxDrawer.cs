@@ -24,12 +24,12 @@ namespace MSD.Editor
 		{
 			position.y += TOP_SPACING;
 			position.height -= TOTAL_SPACING;
-			EditorGUI.HelpBox(position, Attribute.text, Attribute.type);
+			EditorGUI.HelpBox(position, Attribute.Text, Attribute.Type);
 		}
 
 		public override float GetHeight()
 		{
-			var content = new GUIContent(Attribute.text);
+			var content = new GUIContent(Attribute.Text);
 			var height = EditorStyles.helpBox.CalcHeight(content, EditorGUIUtility.currentViewWidth);
 
 			height = Mathf.Max(MINIMUM_BOX_HEIGHT, height);
