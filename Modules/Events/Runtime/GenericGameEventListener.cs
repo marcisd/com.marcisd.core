@@ -22,17 +22,23 @@ namespace MSD
 
 		private void OnEnable()
 		{
-			_gameEvent.RegisterListener(this);
+			if (_gameEvent != null) {
+				_gameEvent.RegisterListener(this);
+			}
 		}
 
 		private void OnDisable()
 		{
-			_gameEvent.UnregisterListener(this);
+			if (_gameEvent != null) {
+				_gameEvent.UnregisterListener(this);
+			}
 		}
 
 		void IGameEventListener<T>.OnEventRaised(T value)
 		{
-			_response.Invoke(value);
+			if (_response != null) {
+				_response.Invoke(value);
+			}
 		}
 	}
 }
