@@ -18,40 +18,39 @@ namespace MSD.Editor
 		{
 			SerializedProperty initialValueProp = property.FindPropertyRelative("_initialValue");
 
-			Rect propertyRect = new Rect(position) {
+			Rect initialValueRect = new Rect(position) {
 				height = EditorGUI.GetPropertyHeight(initialValueProp),
 			};
 
 			Rect labelRect = new Rect(position) {
-				y = propertyRect.yMax + EditorGUIUtility.standardVerticalSpacing,
+				y = initialValueRect.yMax + EditorGUIUtility.standardVerticalSpacing,
 				height = EditorGUIUtility.singleLineHeight,
 			};
 
 			Rect selectableLabelRect = new Rect(position) {
-				x = propertyRect.xMin + EditorGUIUtility.labelWidth + EditorGUIUtility.standardVerticalSpacing,
-				y = propertyRect.yMax + EditorGUIUtility.standardVerticalSpacing,
-				width = propertyRect.width - EditorGUIUtility.labelWidth,
+				x = initialValueRect.xMin + EditorGUIUtility.labelWidth + EditorGUIUtility.standardVerticalSpacing,
+				y = initialValueRect.yMax + EditorGUIUtility.standardVerticalSpacing,
+				width = initialValueRect.width - EditorGUIUtility.labelWidth,
 				height = EditorGUIUtility.singleLineHeight,
 			};
 
-			EditorGUI.PropertyField(propertyRect, initialValueProp);
+			EditorGUI.PropertyField(initialValueRect, initialValueProp);
 
 			PropertyInfo valueInfo = fieldInfo.FieldType.GetProperty("Value");
 
 			object instance = property.GetObjectInstance();
-			string valueDisplay = valueInfo.GetValue(instance).ToString();
+			object value = valueInfo.GetValue(instance);
+			string valueDisplay = value != null ? value.ToString() : string.Empty;
 
 			EditorGUI.LabelField(labelRect, "Runtime Value");
-			EditorGUI.SelectableLabel(selectableLabelRect, valueDisplay.ToString());
+			EditorGUI.SelectableLabel(selectableLabelRect, valueDisplay);
 		}
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 		{
 			SerializedProperty initialValueProp = property.FindPropertyRelative("_initialValue");
-
 			float height = EditorGUI.GetPropertyHeight(initialValueProp);
 			height += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
-
 			return height;
 		}
 	}
