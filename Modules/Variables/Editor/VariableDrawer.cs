@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 
 /*===============================================================
@@ -35,9 +36,13 @@ namespace MSD.Editor
 
 			EditorGUI.PropertyField(propertyRect, initialValueProp);
 
-			VariableBase obj = (VariableBase)property.GetObjectInstance();
+			PropertyInfo valueInfo = fieldInfo.FieldType.GetProperty("Value");
+
+			object instance = property.GetObjectInstance();
+			string valueDisplay = valueInfo.GetValue(instance).ToString();
+
 			EditorGUI.LabelField(labelRect, "Runtime Value");
-			EditorGUI.SelectableLabel(selectableLabelRect, obj.GetRuntimeValue().ToString());
+			EditorGUI.SelectableLabel(selectableLabelRect, valueDisplay.ToString());
 		}
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

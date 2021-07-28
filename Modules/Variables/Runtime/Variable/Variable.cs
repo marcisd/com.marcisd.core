@@ -59,15 +59,7 @@ namespace MSD
 		{
 			RuntimeValue = _initialValue;
 		}
-
-		internal override object GetRuntimeValue()
-		{
-			return RuntimeValue;
-		}
 	}
 
-	public abstract class VariableBase
-	{
-		internal abstract object GetRuntimeValue();
-	}
+	public abstract class VariableBase { }
 }
