@@ -49,7 +49,7 @@ namespace MSD.Editor
 				position.xMin = buttonRect.xMax;
 
 				using (new EditorGUI.IndentLevelScope(-EditorGUI.indentLevel))
-				using (var changeCheck = new EditorGUI.ChangeCheckScope()) {
+				using (EditorGUI.ChangeCheckScope changeCheck = new EditorGUI.ChangeCheckScope()) {
 					int result = EditorGUI.Popup(buttonRect, useConstantProp.boolValue ? 0 : 1, POPUP_OPTIONS, popupStyle);
 					useConstantProp.boolValue = result == 0;
 

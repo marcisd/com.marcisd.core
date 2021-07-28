@@ -15,15 +15,15 @@ namespace MSD.Editor
 	{
 		public static bool TryGetArrayIndex(this SerializedProperty serializedProperty, out int index)
 		{
-			index = -1;
-			var pathElements = serializedProperty.propertyPath.Split('.');
+			string[] pathElements = serializedProperty.propertyPath.Split('.');
 			if (pathElements.Length > 2 &&
 				pathElements[pathElements.Length - 1].Contains("data[") &&
 				pathElements[pathElements.Length - 2].Equals("Array")) {
-				var resultString = Regex.Match(pathElements[pathElements.Length - 1], @"\d+").Value;
+				string resultString = Regex.Match(pathElements[pathElements.Length - 1], @"\d+").Value;
 				index = int.Parse(resultString);
 				return true;
 			}
+			index = -1;
 			return false;
 		}
 

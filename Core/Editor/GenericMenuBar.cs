@@ -187,7 +187,7 @@ namespace MSD.Editor
 		public void Draw()
 		{
 			using (new MenuBarScope()) {
-				foreach (var element in _elements) {
+				foreach (Element element in _elements) {
 					element.Draw();
 				}
 			}

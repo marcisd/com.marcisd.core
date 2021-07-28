@@ -47,9 +47,9 @@ namespace MSD
 		/// <param name="newIndex">New index.</param>
 		public static void Swap(this IList list, int oldIndex, int newIndex)
 		{
-			var item = list[oldIndex];
+			object temp = list[oldIndex];
 			list[oldIndex] = list[newIndex];
-			list[newIndex] = item;
+			list[newIndex] = temp;
 		}
 
 		/// <summary>
@@ -60,7 +60,7 @@ namespace MSD
 		/// <param name="newIndex">New index.</param>
 		public static void Move(this IList list, int oldIndex, int newIndex)
 		{
-			var temp = list[oldIndex];
+			object temp = list[oldIndex];
 			for (int i = 0; i < list.Count - 1; i++) {
 				if (i >= oldIndex) {
 					list[i] = list[i + 1];
@@ -82,12 +82,12 @@ namespace MSD
 		{
 			int n = list.Count;
 			while (n > 1) {
-				var k = Random.Range(0, n);
+				int k = Random.Range(0, n);
 				n -= 1;
 				if (n != k) {
-					var value = list[k];
+					object temp = list[k];
 					list[k] = list[n];
-					list[n] = value;
+					list[n] = temp;
 				}
 			}
 		}

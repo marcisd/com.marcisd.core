@@ -29,8 +29,8 @@ namespace MSD.Editor
 
 		public override float GetHeight()
 		{
-			var content = new GUIContent(Attribute.Text);
-			var height = EditorStyles.helpBox.CalcHeight(content, EditorGUIUtility.currentViewWidth);
+			GUIContent content = new GUIContent(Attribute.Text);
+			float height = EditorStyles.helpBox.CalcHeight(content, EditorGUIUtility.currentViewWidth);
 
 			height = Mathf.Max(MINIMUM_BOX_HEIGHT, height);
 
