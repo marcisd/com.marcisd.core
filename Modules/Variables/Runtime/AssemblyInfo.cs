@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("com.marcisd.core.variables.Editor")]
+[assembly: InternalsVisibleTo("MSD.Core.Wariables.Editor")]
